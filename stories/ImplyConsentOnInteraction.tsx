@@ -34,7 +34,7 @@ export const ImplyConsentOnInteraction = () => {
 
         <Pane display="flex">
           <iframe
-            src="https://giphy.com/embed/yFQ0ywscgobJK"
+            src="https://source.unsplash.com/random/500x600"
             width="398"
             height="480"
             frameBorder="0"

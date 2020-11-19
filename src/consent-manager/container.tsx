@@ -2,7 +2,6 @@ import EventEmitter from 'events'
 import React from 'react'
 import Banner from './banner'
 import PreferenceDialog from './preference-dialog'
-import CancelDialog from './cancel-dialog'
 import { ADVERTISING_CATEGORIES, FUNCTIONAL_CATEGORIES } from './categories'
 import {
   Destination,
@@ -44,8 +43,6 @@ interface ContainerProps {
   bannerBackgroundColor: string
   preferencesDialogTitle: React.ReactNode
   preferencesDialogContent: React.ReactNode
-  cancelDialogTitle: React.ReactNode
-  cancelDialogContent: React.ReactNode
   workspaceAddedNewDestinations?: boolean
   defaultDestinationBehavior?: DefaultDestinationBehavior
 }
@@ -74,11 +71,9 @@ const Container: React.FC<ContainerProps> = props => {
     false || (props.workspaceAddedNewDestinations && props.defaultDestinationBehavior === 'ask')
   )
   const [showBanner, toggleBanner] = React.useState(true)
-  const [isCancelling, toggleCancel] = React.useState(false)
 
   let banner = React.useRef<HTMLElement>(null)
   let preferenceDialog = React.useRef<HTMLElement>(null)
-  let cancelDialog = React.useRef<HTMLElement>(null)
 
   const {
     marketingDestinations,
@@ -99,8 +94,7 @@ const Container: React.FC<ContainerProps> = props => {
     // Ignore propogated clicks from inside the consent manager
     if (
       (banner.current && banner.current.contains(e.target)) ||
-      (preferenceDialog.current && preferenceDialog.current.contains(e.target)) ||
-      (cancelDialog.current && cancelDialog.current.contains(e.target))
+      (preferenceDialog.current && preferenceDialog.current.contains(e.target))
     ) {
       return
     }
@@ -128,16 +122,23 @@ const Container: React.FC<ContainerProps> = props => {
     }
   }, [isDialogOpen])
 
-  const onClose = () => {
-    if (props.closeBehavior === undefined || props.closeBehavior === CloseBehavior.DISMISS) {
+  const onClose = (forceCloseBehavior?: CloseBehavior | CloseBehaviorFunction) => {
+    const closeBehavior = forceCloseBehavior || props.closeBehavior
+
+    if (closeBehavior === undefined || closeBehavior === CloseBehavior.DISMISS) {
       return toggleBanner(false)
     }
 
-    if (props.closeBehavior === CloseBehavior.ACCEPT) {
+    if (closeBehavior === CloseBehavior.ACCEPT) {
+      const truePreferences = Object.keys(props.preferences).reduce((acc, category) => {
+        acc[category] = true
+        return acc
+      }, {})
+      props.setPreferences(truePreferences)
       return props.saveConsent()
     }
 
-    if (props.closeBehavior === CloseBehavior.DENY) {
+    if (closeBehavior === CloseBehavior.DENY) {
       const falsePreferences = Object.keys(props.preferences).reduce((acc, category) => {
         acc[category] = false
         return acc
@@ -148,7 +149,7 @@ const Container: React.FC<ContainerProps> = props => {
     }
 
     // closeBehavior is a custom function
-    const customClosePreferences = props.closeBehavior(props.preferences)
+    const customClosePreferences = closeBehavior(props.preferences)
     props.setPreferences(customClosePreferences)
     props.saveConsent()
     return toggleBanner(false)
@@ -169,21 +170,11 @@ const Container: React.FC<ContainerProps> = props => {
   const handleCancel = () => {
     // Only show the cancel confirmation if there's unconsented destinations
     if (props.newDestinations.length > 0) {
-      toggleCancel(true)
+      toggleDialog(false)
     } else {
       toggleDialog(false)
       props.resetPreferences()
     }
-  }
-
-  const handleCancelBack = () => {
-    toggleCancel(false)
-  }
-
-  const handleCancelConfirm = () => {
-    toggleCancel(false)
-    toggleDialog(false)
-    props.resetPreferences()
   }
 
   return (
@@ -217,16 +208,6 @@ const Container: React.FC<ContainerProps> = props => {
           functional={props.preferences.functional}
           title={props.preferencesDialogTitle}
           content={props.preferencesDialogContent}
-        />
-      )}
-
-      {isCancelling && (
-        <CancelDialog
-          innerRef={current => (cancelDialog = { current })}
-          onBack={handleCancelBack}
-          onConfirm={handleCancelConfirm}
-          title={props.cancelDialogTitle}
-          content={props.cancelDialogContent}
         />
       )}
     </div>

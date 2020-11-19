@@ -1,16 +1,28 @@
 import React, { PureComponent } from 'react'
 import styled from 'react-emotion'
-import fontStyles from './font-styles'
+import { DefaultButton, GreenButton } from './buttons'
+import { CloseBehavior, CloseBehaviorFunction } from './container'
+
+const Overlay = styled('div')`
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  display: grid;
+  place-items: center;
+`
 
 const Root = styled<{ backgroundColor: string; textColor: string }, 'div'>('div')`
-  ${fontStyles};
-  position: relative;
-  padding: 8px;
-  padding-right: 40px;
+  border-radius: 4px;
+  margin: 8px;
+  max-width: 500px;
+  padding: 20px;
   background: ${props => props.backgroundColor};
   color: ${props => props.textColor};
-  text-align: center;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.3;
 `
 
@@ -26,6 +38,7 @@ const Content = styled('div')`
     text-decoration: underline;
     cursor: pointer;
   }
+  margin-bottom: 1em;
 `
 
 const P = styled('p')`
@@ -35,24 +48,20 @@ const P = styled('p')`
   }
 `
 
-const CloseButton = styled('button')`
-  position: absolute;
-  right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 8px;
-  border: none;
-  background: none;
-  color: inherit;
-  font: inherit;
-  font-size: 14px;
-  line-height: 1;
-  cursor: pointer;
+const Actions = styled('div')`
+  text-align: right;
+  @media screen and (max-width: 400px) {
+    button {
+      margin-top: 4px;
+      float: right;
+      clear: both;
+    }
+  }
 `
 
 interface Props {
   innerRef: (node: HTMLElement | null) => void
-  onClose: () => void
+  onClose: (forceCloseBehaviour?: CloseBehavior | CloseBehaviorFunction) => void
   onChangePreferences: () => void
   content: React.ReactNode
   subContent: React.ReactNode
@@ -69,26 +78,52 @@ export default class Banner extends PureComponent<Props> {
       onClose,
       onChangePreferences,
       content,
-      subContent,
       backgroundColor,
       textColor
     } = this.props
 
     return (
-      <Root innerRef={innerRef} backgroundColor={backgroundColor} textColor={textColor}>
-        <Content>
-          <P>{content}</P>
-          <P>
-            <button type="button" onClick={onChangePreferences}>
-              {subContent}
-            </button>
-          </P>
-        </Content>
-
-        <CloseButton type="button" title="Close" aria-label="Close" onClick={onClose}>
-          ✕
-        </CloseButton>
-      </Root>
+      <>
+        <Overlay>
+          <Root innerRef={innerRef} backgroundColor={backgroundColor} textColor={textColor}>
+            <Content>
+              <img
+                src="https://lagrave.muchbetteradventures.com/seekr2/img/muchbetteradventures.svg"
+                alt="Much Better Adventures Logo"
+                height="32"
+              />
+              <h4>Cookies &amp; Your Privacy</h4>
+              <P>{content}</P>
+            </Content>
+            <Actions>
+              <DefaultButton
+                type="button"
+                title="Preferences"
+                aria-label="Close"
+                onClick={onChangePreferences}
+              >
+                Preferences
+              </DefaultButton>
+              <DefaultButton
+                type="button"
+                title="Reject"
+                aria-label="Close"
+                onClick={() => onClose(CloseBehavior.DENY)}
+              >
+                Reject All
+              </DefaultButton>
+              <GreenButton
+                type="button"
+                title="Accept"
+                aria-label="Close"
+                onClick={() => onClose(CloseBehavior.ACCEPT)}
+              >
+                Accept All
+              </GreenButton>
+            </Actions>
+          </Root>
+        </Overlay>
+      </>
     )
   }
 }

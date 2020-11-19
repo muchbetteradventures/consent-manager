@@ -17,7 +17,7 @@ const Overlay = styled('div')`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(67, 90, 111, 0.699);
+  background: rgba(0, 0, 0, 0.3);
 `
 
 const openAnimation = keyframes`
@@ -59,12 +59,8 @@ const Header = styled('div')`
   border-bottom: 1px solid rgba(67, 90, 111, 0.079);
 `
 
-const Title = styled('h2')`
+const Title = styled('h4')`
   margin: 0;
-  color: #1f4160;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.3;
 `
 
 const HeaderCancelButton = styled('button')`
@@ -90,16 +86,6 @@ const Content = styled('div')`
     margin: 0;
     &:not(:last-child) {
       margin-bottom: 0.7em;
-    }
-  }
-
-  a {
-    color: #47b881;
-    &:hover {
-      color: #64c395;
-    }
-    &:active {
-      color: #248953;
     }
   }
 `

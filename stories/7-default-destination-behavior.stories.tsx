@@ -97,14 +97,14 @@ const ConsentManagerExample = (props: {
         <Heading> Cute Cats </Heading>
         <Pane display="flex">
           <iframe
-            src="https://giphy.com/embed/JIX9t2j0ZTN9S"
+            src="https://source.unsplash.com/random/500x600"
             width="480"
             height="480"
             frameBorder="0"
           />
 
           <iframe
-            src="https://giphy.com/embed/yFQ0ywscgobJK"
+            src="https://source.unsplash.com/random/500x600"
             width="398"
             height="480"
             frameBorder="0"

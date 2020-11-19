@@ -20,9 +20,9 @@ export default class ConsentManager extends PureComponent<ConsentManagerProps, {
     onError: undefined,
     cookieDomain: undefined,
     customCategories: undefined,
-    bannerTextColor: '#fff',
+    bannerTextColor: '#000',
     bannerSubContent: 'You can change your preferences at any time.',
-    bannerBackgroundColor: '#1f4160',
+    bannerBackgroundColor: '#fff',
     preferencesDialogTitle: 'Website Data Collection Preferences',
     cancelDialogTitle: 'Are you sure you want to cancel?',
     defaultDestinationBehavior: 'disable'
@@ -41,8 +41,6 @@ export default class ConsentManager extends PureComponent<ConsentManagerProps, {
       bannerBackgroundColor,
       preferencesDialogTitle,
       preferencesDialogContent,
-      cancelDialogTitle,
-      cancelDialogContent,
       customCategories,
       defaultDestinationBehavior,
       cdnHost,
@@ -96,8 +94,6 @@ export default class ConsentManager extends PureComponent<ConsentManagerProps, {
               }
               preferencesDialogTitle={preferencesDialogTitle}
               preferencesDialogContent={preferencesDialogContent}
-              cancelDialogTitle={cancelDialogTitle}
-              cancelDialogContent={cancelDialogContent}
               havePreferencesChanged={havePreferencesChanged}
               defaultDestinationBehavior={defaultDestinationBehavior}
               workspaceAddedNewDestinations={workspaceAddedNewDestinations}

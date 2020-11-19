@@ -115,7 +115,7 @@ export default class PreferenceDialog extends PureComponent<PreferenceDialogProp
         onCancel={onCancel}
         onSubmit={this.handleSubmit}
       >
-        {content}
+        <p>{content}</p>
 
         <TableScroll>
           <Table>
