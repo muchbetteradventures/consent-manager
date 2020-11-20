@@ -4,7 +4,7 @@ import { DefaultButton, TextButton } from './buttons'
 import { CloseBehavior, CloseBehaviorFunction } from './container'
 
 const Overlay = styled('div')`
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.2);
   position: fixed;
   top: 0;
   left: 0;
@@ -13,17 +13,24 @@ const Overlay = styled('div')`
   z-index: 999;
   display: grid;
   place-items: center;
+  @media screen and (max-width: 600px) {
+    place-items: end;
+  }
 `
 
 const Root = styled<{ backgroundColor: string; textColor: string }, 'div'>('div')`
   border-radius: 4px;
   margin: 8px;
   max-width: 500px;
-  padding: 20px;
+  padding: 16px;
   background: ${props => props.backgroundColor};
   color: ${props => props.textColor};
   font-size: 14px;
   line-height: 1.3;
+  @media screen and (max-width: 600px) {
+    margin: 0;
+    border-radius: 0;
+  }
 `
 
 const Content = styled('div')`
@@ -56,12 +63,6 @@ const Actions = styled('div')`
     padding-right: 0;
     margin: 0;
   }
-  @media screen and (max-width: 400px) {
-    button.preferences {
-      display: block;
-      float: none;
-    }
-  }
 `
 
 interface Props {
@@ -92,11 +93,6 @@ export default class Banner extends PureComponent<Props> {
         <Overlay>
           <Root innerRef={innerRef} backgroundColor={backgroundColor} textColor={textColor}>
             <Content>
-              <img
-                src="https://lagrave.muchbetteradventures.com/seekr2/img/muchbetteradventures.svg"
-                alt="Much Better Adventures Logo"
-                height="32"
-              />
               <h4>Cookies &amp; Your Privacy</h4>
               <P>{content}</P>
             </Content>
@@ -108,7 +104,7 @@ export default class Banner extends PureComponent<Props> {
                 aria-label="Close"
                 onClick={onChangePreferences}
               >
-                Preferences
+                Manage
               </TextButton>
               <DefaultButton
                 type="button"
