@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import styled from 'react-emotion'
-import { DefaultButton, GreenButton } from './buttons'
+import { DefaultButton, TextButton } from './buttons'
 import { CloseBehavior, CloseBehaviorFunction } from './container'
 
 const Overlay = styled('div')`
@@ -50,11 +50,16 @@ const P = styled('p')`
 
 const Actions = styled('div')`
   text-align: right;
+  button.preferences {
+    float: left;
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0;
+  }
   @media screen and (max-width: 400px) {
-    button {
-      margin-top: 4px;
-      float: right;
-      clear: both;
+    button.preferences {
+      display: block;
+      float: none;
     }
   }
 `
@@ -96,14 +101,15 @@ export default class Banner extends PureComponent<Props> {
               <P>{content}</P>
             </Content>
             <Actions>
-              <DefaultButton
+              <TextButton
+                className="preferences"
                 type="button"
                 title="Preferences"
                 aria-label="Close"
                 onClick={onChangePreferences}
               >
                 Preferences
-              </DefaultButton>
+              </TextButton>
               <DefaultButton
                 type="button"
                 title="Reject"
@@ -112,14 +118,14 @@ export default class Banner extends PureComponent<Props> {
               >
                 Reject All
               </DefaultButton>
-              <GreenButton
+              <DefaultButton
                 type="button"
                 title="Accept"
                 aria-label="Close"
                 onClick={() => onClose(CloseBehavior.ACCEPT)}
               >
                 Accept All
-              </GreenButton>
+              </DefaultButton>
             </Actions>
           </Root>
         </Overlay>

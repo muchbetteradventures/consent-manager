@@ -29,6 +29,14 @@ export const DefaultButton = styled('button')`
   margin-left: 4px;
 `
 
+export const TextButton = styled('button')`
+  ${baseStyles};
+  color: #428bca;
+  background-color: #fff;
+  border: none;
+  margin-left: 4px;
+`
+
 export const GreenButton = styled('button')`
   ${baseStyles};
   background-color: #98be42;

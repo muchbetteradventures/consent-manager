@@ -10,6 +10,13 @@ const hideOnMobile = css`
   }
 `
 
+const P = styled('p')`
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
+`
+
 const TableScroll = styled('div')`
   overflow-x: auto;
   margin-top: 16px;
@@ -115,7 +122,7 @@ export default class PreferenceDialog extends PureComponent<PreferenceDialogProp
         onCancel={onCancel}
         onSubmit={this.handleSubmit}
       >
-        <p>{content}</p>
+        <P>{content}</P>
 
         <TableScroll>
           <Table>
