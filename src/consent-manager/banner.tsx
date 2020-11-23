@@ -73,6 +73,7 @@ interface Props {
   subContent: React.ReactNode
   backgroundColor: string
   textColor: string
+  showRejectAll: boolean
 }
 
 export default class Banner extends PureComponent<Props> {
@@ -85,27 +86,28 @@ export default class Banner extends PureComponent<Props> {
       onChangePreferences,
       content,
       backgroundColor,
-      textColor
+      textColor,
+      showRejectAll
     } = this.props
 
     return (
-      <>
-        <Overlay>
-          <Root innerRef={innerRef} backgroundColor={backgroundColor} textColor={textColor}>
-            <Content>
-              <h4>Cookies &amp; Your Privacy</h4>
-              <P>{content}</P>
-            </Content>
-            <Actions>
-              <TextButton
-                className="preferences"
-                type="button"
-                title="Preferences"
-                aria-label="Close"
-                onClick={onChangePreferences}
-              >
-                Manage
-              </TextButton>
+      <Overlay>
+        <Root innerRef={innerRef} backgroundColor={backgroundColor} textColor={textColor}>
+          <Content>
+            <h4>Cookies &amp; Your Privacy</h4>
+            <P>{content}</P>
+          </Content>
+          <Actions>
+            <TextButton
+              className="preferences"
+              type="button"
+              title="Preferences"
+              aria-label="Close"
+              onClick={onChangePreferences}
+            >
+              Manage
+            </TextButton>
+            {showRejectAll && (
               <DefaultButton
                 type="button"
                 title="Reject"
@@ -114,18 +116,18 @@ export default class Banner extends PureComponent<Props> {
               >
                 Reject All
               </DefaultButton>
-              <DefaultButton
-                type="button"
-                title="Accept"
-                aria-label="Close"
-                onClick={() => onClose(CloseBehavior.ACCEPT)}
-              >
-                Accept All
-              </DefaultButton>
-            </Actions>
-          </Root>
-        </Overlay>
-      </>
+            )}
+            <DefaultButton
+              type="button"
+              title="Accept"
+              aria-label="Close"
+              onClick={() => onClose(CloseBehavior.ACCEPT)}
+            >
+              Accept All
+            </DefaultButton>
+          </Actions>
+        </Root>
+      </Overlay>
     )
   }
 }

@@ -3,6 +3,7 @@ import styled, { css } from 'react-emotion'
 import Dialog from './dialog'
 import { DefaultButton, GreenButton } from './buttons'
 import { Destination, CustomCategories, CategoryPreferences } from '../types'
+import { CloseBehavior, CloseBehaviorFunction } from './container'
 
 const hideOnMobile = css`
   @media (max-width: 600px) {
@@ -68,6 +69,7 @@ interface PreferenceDialogProps {
   onCancel: () => void
   onSave: () => void
   onChange: (name: string, value: boolean) => void
+  onClose: (forceCloseBehaviour?: CloseBehavior | CloseBehaviorFunction) => void
   marketingDestinations: Destination[]
   advertisingDestinations: Destination[]
   functionalDestinations: Destination[]
@@ -94,6 +96,7 @@ export default class PreferenceDialog extends PureComponent<PreferenceDialogProp
     const {
       innerRef,
       onCancel,
+      onClose,
       marketingDestinations,
       advertisingDestinations,
       functionalDestinations,
@@ -108,8 +111,21 @@ export default class PreferenceDialog extends PureComponent<PreferenceDialogProp
     } = this.props
     const buttons = (
       <div>
-        <DefaultButton type="button" onClick={onCancel}>
-          Cancel
+        <DefaultButton
+          type="button"
+          title="Reject"
+          aria-label="Close"
+          onClick={() => onClose(CloseBehavior.DENY)}
+        >
+          Reject All
+        </DefaultButton>
+        <DefaultButton
+          type="button"
+          title="Accept"
+          aria-label="Close"
+          onClick={() => onClose(CloseBehavior.ACCEPT)}
+        >
+          Accept All
         </DefaultButton>
         <GreenButton type="submit">Save</GreenButton>
       </div>

@@ -11,6 +11,7 @@ const COOKIE_EXPIRES = 365
 export interface PreferencesManager {
   loadPreferences(): Preferences
   onPreferencesSaved(listener: (prefs: Preferences) => void): void
+  onWillShowBanner(listener: (prefs: Preferences) => void): void
   savePreferences(prefs: SavePreferences): void
 }
 
@@ -31,7 +32,7 @@ export function loadPreferences(): Preferences {
 
 type SavePreferences = Preferences & { cookieDomain?: string }
 
-const emitter = new EventEmitter()
+export const emitter = new EventEmitter()
 
 /**
  * Subscribes to consent preferences changing over time and returns
@@ -42,6 +43,17 @@ const emitter = new EventEmitter()
 export function onPreferencesSaved(listener: (prefs: Preferences) => void) {
   emitter.on('preferencesSaved', listener)
   return () => emitter.off('preferencesSaved', listener)
+}
+
+/**
+ * Subscribes to consent preferences changing over time and returns
+ * a cleanup function that can be invoked to remove the instantiated listener.
+ *
+ * @param listener a function to be invoked when ConsentPreferences are saved
+ */
+export function onWillShowBanner(listener: (prefs: Preferences) => void) {
+  emitter.on('willShowBanner', listener)
+  return () => emitter.off('willShowBanner', listener)
 }
 
 export function savePreferences({

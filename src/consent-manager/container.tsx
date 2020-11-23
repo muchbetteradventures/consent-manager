@@ -10,6 +10,8 @@ import {
   DefaultDestinationBehavior
 } from '../types'
 
+import { emitter as prefsEmitter } from '../consent-manager-builder/preferences'
+
 const emitter = new EventEmitter()
 export function openDialog() {
   emitter.emit('openDialog')
@@ -45,6 +47,7 @@ interface ContainerProps {
   preferencesDialogContent: React.ReactNode
   workspaceAddedNewDestinations?: boolean
   defaultDestinationBehavior?: DefaultDestinationBehavior
+  showRejectAll: boolean
 }
 
 function normalizeDestinations(destinations: Destination[]) {
@@ -122,8 +125,15 @@ const Container: React.FC<ContainerProps> = props => {
     }
   }, [isDialogOpen])
 
+  React.useEffect(() => {
+    if (showBanner && props.isConsentRequired && props.newDestinations.length > 0) {
+      prefsEmitter.emit('willShowBanner')
+    }
+  }, [showBanner, props.isConsentRequired, props.newDestinations])
+
   const onClose = (forceCloseBehavior?: CloseBehavior | CloseBehaviorFunction) => {
     const closeBehavior = forceCloseBehavior || props.closeBehavior
+    toggleDialog(false)
 
     if (closeBehavior === undefined || closeBehavior === CloseBehavior.DISMISS) {
       return toggleBanner(false)
@@ -188,6 +198,7 @@ const Container: React.FC<ContainerProps> = props => {
           subContent={props.bannerSubContent}
           textColor={props.bannerTextColor}
           backgroundColor={props.bannerBackgroundColor}
+          showRejectAll={props.showRejectAll}
         />
       )}
 
@@ -200,6 +211,7 @@ const Container: React.FC<ContainerProps> = props => {
           onCancel={handleCancel}
           onSave={handleSave}
           onChange={handleCategoryChange}
+          onClose={onClose}
           marketingDestinations={marketingDestinations}
           advertisingDestinations={advertisingDestinations}
           functionalDestinations={functionalDestinations}
