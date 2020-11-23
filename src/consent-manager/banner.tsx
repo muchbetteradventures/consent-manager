@@ -10,7 +10,7 @@ const Overlay = styled('div')`
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 999;
+  z-index: 1250;
   display: grid;
   place-items: center;
   @media screen and (max-width: 600px) {
