@@ -1,7 +1,8 @@
 import { css } from 'react-emotion'
 
 export default css`
-  font-family: Rubik;
+  font-family: Rubik, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu,
+    'Helvetica Neue', Oxygen, Cantarell, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;

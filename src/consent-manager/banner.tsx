@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import styled from 'react-emotion'
 import { DefaultButton, TextButton } from './buttons'
 import { CloseBehavior, CloseBehaviorFunction } from './container'
+import fontStyles from './font-styles'
 
 const Overlay = styled('div')`
   background: rgba(0, 0, 0, 0.2);
@@ -18,7 +19,14 @@ const Overlay = styled('div')`
   }
 `
 
+const Title = styled('h4')`
+  margin-top: 0;
+  margin-bottom: 0.7em;
+  text-transform: uppercase;
+`
+
 const Root = styled<{ backgroundColor: string; textColor: string }, 'div'>('div')`
+  ${fontStyles}
   border-radius: 4px;
   margin: 8px;
   max-width: 500px;
@@ -45,7 +53,7 @@ const Content = styled('div')`
     text-decoration: underline;
     cursor: pointer;
   }
-  margin-bottom: 1em;
+  margin-bottom: 0.7em;
 `
 
 const P = styled('p')`
@@ -61,6 +69,7 @@ const Actions = styled('div')`
     float: left;
     padding-left: 0;
     padding-right: 0;
+    border-radius: 0;
     margin: 0;
   }
 `
@@ -94,7 +103,7 @@ export default class Banner extends PureComponent<Props> {
       <Overlay>
         <Root innerRef={innerRef} backgroundColor={backgroundColor} textColor={textColor}>
           <Content>
-            <h4>Cookies &amp; Your Privacy</h4>
+            <Title>Cookies &amp; Your Privacy</Title>
             <P>{content}</P>
           </Content>
           <Actions>

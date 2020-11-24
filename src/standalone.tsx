@@ -46,10 +46,6 @@ if (!props.preferencesDialogContent) {
   throw new Error('ConsentManager: preferencesDialogContent is required')
 }
 
-if (!props.cancelDialogContent) {
-  throw new Error('ConsentManager: cancelDialogContent is required')
-}
-
 if (typeof props.implyConsentOnInteraction === 'string') {
   props.implyConsentOnInteraction = props.implyConsentOnInteraction === 'true'
 }

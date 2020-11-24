@@ -61,6 +61,7 @@ const Header = styled('div')`
 
 const Title = styled('h4')`
   margin: 0;
+  text-transform: uppercase;
 `
 
 const HeaderCancelButton = styled('button')`

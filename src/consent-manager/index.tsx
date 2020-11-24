@@ -24,7 +24,6 @@ export default class ConsentManager extends PureComponent<ConsentManagerProps, {
     bannerSubContent: 'You can change your preferences at any time.',
     bannerBackgroundColor: '#fff',
     preferencesDialogTitle: 'Website Data Collection Preferences',
-    cancelDialogTitle: 'Are you sure you want to cancel?',
     defaultDestinationBehavior: 'disable',
     showRejectAll: false
   }

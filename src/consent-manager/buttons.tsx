@@ -1,6 +1,8 @@
 import styled, { css } from 'react-emotion'
+import fontStyles from './font-styles'
 
 const baseStyles = css`
+  ${fontStyles}
   border: none;
   border-radius: 4px;
   font-size: 12px;
@@ -9,7 +11,6 @@ const baseStyles = css`
   outline: none;
   padding: 6px 16px;
   font-size: 14px;
-  min-width: 64px;
   box-sizing: border-box;
   font-weight: 700;
   line-height: 1.75;
