@@ -1,10 +1,12 @@
 import {
-  WindowWithAJS,
-  Destination,
-  DefaultDestinationBehavior,
   CategoryPreferences,
-  Middleware
+  DefaultDestinationBehavior,
+  Destination,
+  Middleware,
+  WindowWithAJS
 } from '../types'
+
+import { applyIntegrationHooks } from '../hooks'
 
 interface AnalyticsParams {
   writeKey: string
@@ -90,6 +92,6 @@ export default function conditionallyLoadAnalytics({
     // @ts-ignore: Analytics.JS type should be updated with addSourceMiddleware
     wd.analytics.addSourceMiddleware(middleware)
 
-    wd.analytics.load(writeKey, { integrations })
+    wd.analytics.load(writeKey, { integrations: applyIntegrationHooks(integrations) })
   }
 }
