@@ -42,6 +42,11 @@ const Root = styled<{ width: number | string | undefined }, 'section'>('section'
   background: #fff;
   border-radius: 8px;
   animation: ${openAnimation} ${ANIMATION_DURATION} ${ANIMATION_EASING} both;
+  outline: none;
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #1976d2;
+  }
 `
 
 const Form = styled('form')`
@@ -138,6 +143,7 @@ export default class Dialog extends PureComponent<DialogProps, {}> {
           aria-modal
           aria-labelledby={this.titleId}
           width={width}
+          tabIndex={-1}
         >
           <Header>
             <Title id={this.titleId}>{title}</Title>
@@ -162,6 +168,10 @@ export default class Dialog extends PureComponent<DialogProps, {}> {
 
   componentDidMount() {
     const { innerRef } = this.props
+
+    if (this.root) {
+      this.root.focus()
+    }
 
     if (this.form) {
       const input: HTMLInputElement | null = this.form.querySelector('input,button')
