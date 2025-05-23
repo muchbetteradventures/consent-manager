@@ -169,6 +169,7 @@ export default class PreferenceDialog extends PureComponent<PreferenceDialogProp
                           onChange={this.handleChange}
                           aria-label="Allow functional tracking"
                           required
+                          tabIndex={0}
                         />{' '}
                         Yes
                       </label>
@@ -181,6 +182,7 @@ export default class PreferenceDialog extends PureComponent<PreferenceDialogProp
                           onChange={this.handleChange}
                           aria-label="Disallow functional tracking"
                           required
+                          tabIndex={0}
                         />{' '}
                         No
                       </label>
@@ -211,6 +213,7 @@ export default class PreferenceDialog extends PureComponent<PreferenceDialogProp
                           onChange={this.handleChange}
                           aria-label="Allow marketing and analytics tracking"
                           required
+                          tabIndex={0}
                         />{' '}
                         Yes
                       </label>
@@ -223,6 +226,7 @@ export default class PreferenceDialog extends PureComponent<PreferenceDialogProp
                           onChange={this.handleChange}
                           aria-label="Disallow marketing and analytics tracking"
                           required
+                          tabIndex={0}
                         />{' '}
                         No
                       </label>
@@ -254,6 +258,7 @@ export default class PreferenceDialog extends PureComponent<PreferenceDialogProp
                           onChange={this.handleChange}
                           aria-label="Allow advertising tracking"
                           required
+                          tabIndex={0}
                         />{' '}
                         Yes
                       </label>
@@ -266,6 +271,7 @@ export default class PreferenceDialog extends PureComponent<PreferenceDialogProp
                           onChange={this.handleChange}
                           aria-label="Disallow advertising tracking"
                           required
+                          tabIndex={0}
                         />{' '}
                         No
                       </label>
@@ -302,6 +308,7 @@ export default class PreferenceDialog extends PureComponent<PreferenceDialogProp
                             onChange={this.handleChange}
                             aria-label={`Allow "${categoryName}" tracking`}
                             required
+                            tabIndex={0}
                           />{' '}
                           Yes
                         </label>
@@ -314,6 +321,7 @@ export default class PreferenceDialog extends PureComponent<PreferenceDialogProp
                             onChange={this.handleChange}
                             aria-label={`Disallow "${categoryName}" tracking`}
                             required
+                            tabIndex={0}
                           />{' '}
                           No
                         </label>
