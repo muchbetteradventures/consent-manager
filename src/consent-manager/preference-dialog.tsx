@@ -115,6 +115,7 @@ export default class PreferenceDialog extends PureComponent<PreferenceDialogProp
           type="button"
           title="Reject"
           aria-label="Close"
+          tabIndex={0}
           onClick={() => onClose(CloseBehavior.DENY)}
         >
           Reject All
@@ -123,6 +124,7 @@ export default class PreferenceDialog extends PureComponent<PreferenceDialogProp
           type="button"
           title="Accept"
           aria-label="Close"
+          tabIndex={0}
           onClick={() => onClose(CloseBehavior.ACCEPT)}
         >
           Accept All
