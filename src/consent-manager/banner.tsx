@@ -35,6 +35,10 @@ const Root = styled<{ backgroundColor: string; textColor: string }, 'div'>('div'
   color: ${props => props.textColor};
   font-size: 14px;
   line-height: 1.3;
+  outline: none;
+  &:focus {
+    outline: none;
+  }
   @media screen and (max-width: 600px) {
     margin: 0;
     border-radius: 0;
@@ -88,6 +92,13 @@ interface Props {
 export default class Banner extends PureComponent<Props> {
   static displayName = 'Banner'
 
+  componentDidMount() {
+    const element = document.querySelector('[role="dialog"]')
+    if (element instanceof HTMLElement) {
+      element.focus()
+    }
+  }
+
   render() {
     const {
       innerRef,
@@ -101,7 +112,14 @@ export default class Banner extends PureComponent<Props> {
 
     return (
       <Overlay>
-        <Root innerRef={innerRef} backgroundColor={backgroundColor} textColor={textColor}>
+        <Root
+          innerRef={innerRef}
+          backgroundColor={backgroundColor}
+          textColor={textColor}
+          role="dialog"
+          aria-modal="true"
+          tabIndex={-1}
+        >
           <Content>
             <Title>Cookies &amp; Your Privacy</Title>
             <P>{content}</P>
