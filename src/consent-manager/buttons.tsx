@@ -28,6 +28,9 @@ export const DefaultButton = styled('button')`
   border: 1px solid rgba(66, 139, 202, 0.5);
   background-color: #fff;
   margin-left: 4px;
+  &:focus {
+    text-decoration: underline;
+  }
 `
 
 export const TextButton = styled('button')`
@@ -36,12 +39,18 @@ export const TextButton = styled('button')`
   background-color: #fff;
   border: none;
   margin-left: 4px;
+  &:focus {
+    text-decoration: underline;
+  }
 `
 
 export const GreenButton = styled('button')`
   ${baseStyles};
   background-color: #98be42;
   color: #fff;
+  &:focus {
+    text-decoration: underline;
+  }
 `
 
 export const RedButton = styled('button')`

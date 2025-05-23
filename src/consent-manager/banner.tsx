@@ -130,6 +130,7 @@ export default class Banner extends PureComponent<Props> {
               type="button"
               title="Preferences"
               aria-label="Close"
+              tabIndex={0}
               onClick={onChangePreferences}
             >
               Manage
@@ -139,6 +140,7 @@ export default class Banner extends PureComponent<Props> {
                 type="button"
                 title="Reject"
                 aria-label="Close"
+                tabIndex={0}
                 onClick={() => onClose(CloseBehavior.DENY)}
               >
                 Reject All
@@ -148,6 +150,7 @@ export default class Banner extends PureComponent<Props> {
               type="button"
               title="Accept"
               aria-label="Close"
+              tabIndex={0}
               onClick={() => onClose(CloseBehavior.ACCEPT)}
             >
               Accept All
