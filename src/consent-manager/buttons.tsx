@@ -8,7 +8,6 @@ const baseStyles = css`
   font-size: 12px;
   line-height: 1;
   cursor: pointer;
-  outline: none;
   padding: 6px 16px;
   font-size: 14px;
   box-sizing: border-box;
