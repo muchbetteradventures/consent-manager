@@ -35,6 +35,8 @@ export type ConsentManagerInput = ConsentManagerProps & {
 
 export type DefaultDestinationBehavior = 'enable' | 'disable' | 'imply' | 'ask'
 
+export type BannerMode = 'blocking' | 'floating'
+
 interface StandaloneConsentManagerParams {
   React: unknown
   version?: string
@@ -94,4 +96,5 @@ export interface ConsentManagerProps {
   defaultDestinationBehavior?: DefaultDestinationBehavior
   cdnHost?: string
   showRejectAll: boolean
+  bannerMode?: BannerMode
 }

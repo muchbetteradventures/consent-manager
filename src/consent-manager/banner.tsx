@@ -3,8 +3,9 @@ import styled from 'react-emotion'
 import { DefaultButton, TextButton } from './buttons'
 import { CloseBehavior, CloseBehaviorFunction } from './container'
 import fontStyles from './font-styles'
+import { BannerMode } from '../types'
 
-const Overlay = styled('div')`
+const BlockingOverlay = styled('div')`
   background: rgba(0, 0, 0, 0.2);
   position: fixed;
   top: 0;
@@ -19,29 +20,46 @@ const Overlay = styled('div')`
   }
 `
 
+const FloatingContainer = styled('div')`
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 1250;
+  max-width: 400px;
+  @media screen and (max-width: 600px) {
+    bottom: 0;
+    right: 0;
+    left: 0;
+    max-width: 100%;
+  }
+`
+
 const Title = styled('h4')`
   margin-top: 0;
   margin-bottom: 0.7em;
   text-transform: uppercase;
 `
 
-const Root = styled<{ backgroundColor: string; textColor: string }, 'div'>('div')`
+const Root = styled<{ backgroundColor: string; textColor: string; floating?: boolean }, 'div'>(
+  'div'
+)`
   ${fontStyles}
-  border-radius: 4px;
-  margin: 8px;
-  max-width: 500px;
+  border-radius: ${props => (props.floating ? '8px' : '4px')};
+  margin: ${props => (props.floating ? '0' : '8px')};
+  max-width: ${props => (props.floating ? '100%' : '500px')};
   padding: 16px;
   background: ${props => props.backgroundColor};
   color: ${props => props.textColor};
   font-size: 14px;
   line-height: 1.3;
   outline: none;
+  box-shadow: ${props => (props.floating ? '0 4px 12px rgba(0, 0, 0, 0.15)' : 'none')};
   &:focus {
     outline: none;
   }
   @media screen and (max-width: 600px) {
     margin: 0;
-    border-radius: 0;
+    border-radius: ${props => (props.floating ? '8px 8px 0 0' : '0')};
   }
 `
 
@@ -87,15 +105,19 @@ interface Props {
   backgroundColor: string
   textColor: string
   showRejectAll: boolean
+  bannerMode: BannerMode
 }
 
 export default class Banner extends PureComponent<Props> {
   static displayName = 'Banner'
 
   componentDidMount() {
-    const element = document.querySelector('[role="dialog"]')
-    if (element instanceof HTMLElement) {
-      element.focus()
+    // Only auto-focus in blocking mode to avoid interrupting browsing
+    if (this.props.bannerMode === 'blocking') {
+      const element = document.querySelector('[role="dialog"]')
+      if (element instanceof HTMLElement) {
+        element.focus()
+      }
     }
   }
 
@@ -107,17 +129,22 @@ export default class Banner extends PureComponent<Props> {
       content,
       backgroundColor,
       textColor,
-      showRejectAll
+      showRejectAll,
+      bannerMode
     } = this.props
 
+    const isFloating = bannerMode === 'floating'
+    const Container = isFloating ? FloatingContainer : BlockingOverlay
+
     return (
-      <Overlay>
+      <Container>
         <Root
           innerRef={innerRef}
           backgroundColor={backgroundColor}
           textColor={textColor}
+          floating={isFloating}
           role="dialog"
-          aria-modal="true"
+          aria-modal={!isFloating}
           tabIndex={-1}
         >
           <Content>
@@ -157,7 +184,7 @@ export default class Banner extends PureComponent<Props> {
             </DefaultButton>
           </Actions>
         </Root>
-      </Overlay>
+      </Container>
     )
   }
 }

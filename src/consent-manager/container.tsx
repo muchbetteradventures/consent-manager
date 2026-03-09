@@ -7,7 +7,8 @@ import {
   Destination,
   CategoryPreferences,
   CustomCategories,
-  DefaultDestinationBehavior
+  DefaultDestinationBehavior,
+  BannerMode
 } from '../types'
 
 import { emitter as prefsEmitter } from '../consent-manager-builder/preferences'
@@ -48,6 +49,7 @@ interface ContainerProps {
   workspaceAddedNewDestinations?: boolean
   defaultDestinationBehavior?: DefaultDestinationBehavior
   showRejectAll: boolean
+  bannerMode: BannerMode
 }
 
 function normalizeDestinations(destinations: Destination[]) {
@@ -199,6 +201,7 @@ const Container: React.FC<ContainerProps> = props => {
           textColor={props.bannerTextColor}
           backgroundColor={props.bannerBackgroundColor}
           showRejectAll={props.showRejectAll}
+          bannerMode={props.bannerMode}
         />
       )}
 
