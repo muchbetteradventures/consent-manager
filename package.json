@@ -32,7 +32,7 @@
     "clean": "rm -rf commonjs esm standalone storybook-static types",
     "deploy-storybook": "storybook-to-ghpages",
     "standalone-hash": "shasum -b -a 256 standalone/consent-manager.js | xxd -r -p | base64",
-    "build-storybook": "yarn build-standalone && build-storybook && cp -r ./standalone ./storybook-static/standalone",
+    "build-storybook": "NODE_OPTIONS=--openssl-legacy-provider yarn build-standalone && NODE_OPTIONS=--openssl-legacy-provider build-storybook && cp -r ./standalone ./storybook-static/standalone",
     "lint": "eslint 'src/**/*.{ts,tsx}'"
   },
   "dependencies": {
