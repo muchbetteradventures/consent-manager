@@ -108,8 +108,93 @@ The consent manager follows a "no tracking until consent" approach, which is the
 | `bannerMode="floating"`                                      | Can browse, explicit consent required | Yes            | Better UX with compliance    |
 | `bannerMode="floating"` + `implyConsentOnInteraction={true}` | Browsing implies consent              | **No**         | Non-EU sites only            |
 
+## Can You Track Before Consent? (Pre-Consent Analytics)
+
+A common question is whether you can collect any analytics data before users consent. The short answer: **it depends on the tool and method**.
+
+### The ePrivacy Directive Blocker
+
+Even if you claim "legitimate interest" under GDPR, the **ePrivacy Directive (Article 5(3))** requires consent for storing or accessing information on user devices. This means:
+
+- Cookies = consent required
+- LocalStorage = consent required
+- Device fingerprinting = consent required
+
+This applies regardless of your GDPR legal basis.
+
+### Path 1: Cookie-Free Anonymous Analytics (No Consent Required)
+
+Some privacy-focused analytics tools can run without consent because they:
+
+| Requirement              | Implementation                                 |
+| ------------------------ | ---------------------------------------------- |
+| No cookies               | Server-side session handling only              |
+| No persistent IDs        | Hash-based pseudonymization with rotating keys |
+| Immediate anonymization  | Data anonymized within 24 hours                |
+| No cross-device tracking | Each session treated independently             |
+| Aggregated data only     | No individual user profiles                    |
+
+**Tools that qualify:**
+
+- [Plausible Analytics](https://plausible.io/data-policy) - Open source, EU-hosted
+- [Fathom Analytics](https://usefathom.com/why-fathom-analytics/cookieless-analytics) - Cookieless by design
+- [Simple Analytics](https://www.simpleanalytics.com/) - No personal data collected
+
+These can run alongside your consent manager, providing basic metrics while users browse pre-consent.
+
+### Path 2: Legitimate Interest (Limited & Risky)
+
+Under GDPR Article 6(1)(f), you might claim legitimate interest for analytics, but only if:
+
+1. **No device storage used** (no cookies, localStorage, etc.)
+2. **Purpose limited to "reach measurement"** (page views, not user behaviour)
+3. **Legitimate Interests Assessment (LIA) conducted**
+4. **Data minimised and anonymised immediately**
+5. **No data transfers outside EU** (or adequate safeguards in place)
+
+**This does NOT apply to:**
+
+- Google Analytics (uses cookies, transfers to US)
+- Segment (uses persistent identifiers)
+- Any advertising or retargeting tracking
+- Cross-session user profiling
+
+### Why Segment Requires Consent
+
+This consent manager is built for Segment, which:
+
+- Uses cookies/identifiers for user tracking
+- Transfers data to US servers
+- Enables individual user analytics and profiling
+
+Therefore, **Segment-based tracking always requires explicit consent** under GDPR.
+
+### Hybrid Approach (Recommended)
+
+For the best balance of insights and compliance:
+
+```
+Pre-consent: Privacy-first analytics (Plausible, Fathom, etc.)
+             └─ Basic page views, referrers, device types
+             └─ No consent required
+             └─ Runs immediately on page load
+
+Post-consent: Full Segment tracking
+              └─ Detailed user analytics
+              └─ Advertising pixels
+              └─ Only after explicit consent
+```
+
+This gives you:
+
+- Immediate insights into all traffic
+- Full analytics for consenting users
+- Complete GDPR compliance
+
 ## Further Reading
 
 - [EDPB Guidelines on Consent](https://edpb.europa.eu/our-work-tools/our-documents/guidelines/guidelines-052020-consent-under-regulation-2016679_en)
 - [ICO Guidance on Cookies](https://ico.org.uk/for-organisations/guide-to-pecr/cookies-and-similar-technologies/)
 - [CNIL Cookie Guidelines](https://www.cnil.fr/en/cookies-and-other-tracking-devices-cnil-publishes-new-guidelines)
+- [Plausible: Legal Assessment for GDPR Compliance](https://plausible.io/blog/legal-assessment-gdpr-eprivacy)
+- [TermsFeed: Consent vs Legitimate Interest](https://www.termsfeed.com/blog/gdpr-user-consent-legitimate-interest/)
