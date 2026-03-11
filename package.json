@@ -1,6 +1,6 @@
 {
   "name": "@muchbetteradventures/consent-manager",
-  "version": "5.7.1-beta.0",
+  "version": "5.7.1-beta.1",
   "description": "Drop-in consent management plugin for analytics.js",
   "keywords": [
     "gdpr",
