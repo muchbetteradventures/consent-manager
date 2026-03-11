@@ -25,7 +25,8 @@ export default class ConsentManager extends PureComponent<ConsentManagerProps, {
     bannerBackgroundColor: '#fff',
     preferencesDialogTitle: 'Website Data Collection Preferences',
     defaultDestinationBehavior: 'disable',
-    showRejectAll: false
+    showRejectAll: true,
+    bannerMode: 'blocking' as const
   }
 
   render() {
@@ -45,7 +46,8 @@ export default class ConsentManager extends PureComponent<ConsentManagerProps, {
       defaultDestinationBehavior,
       cdnHost,
       showRejectAll,
-      onError
+      onError,
+      bannerMode
     } = this.props
 
     return (
@@ -99,6 +101,7 @@ export default class ConsentManager extends PureComponent<ConsentManagerProps, {
               havePreferencesChanged={havePreferencesChanged}
               defaultDestinationBehavior={defaultDestinationBehavior}
               workspaceAddedNewDestinations={workspaceAddedNewDestinations}
+              bannerMode={bannerMode ?? ConsentManager.defaultProps.bannerMode}
             />
           )
         }}

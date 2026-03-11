@@ -1,6 +1,6 @@
 {
   "name": "@muchbetteradventures/consent-manager",
-  "version": "5.7.0",
+  "version": "5.7.1-beta.2",
   "description": "Drop-in consent management plugin for analytics.js",
   "keywords": [
     "gdpr",
@@ -24,15 +24,15 @@
     "test": "jest src/__tests__",
     "prepublishOnly": "yarn run clean && yarn run build",
     "postpublish": "yarn build-storybook && yarn deploy-storybook -- --existing-output-dir=storybook-static",
-    "dev": "concurrently 'yarn build-standalone --watch' 'yarn start-storybook -s ./ -p 9009'",
+    "dev": "NODE_OPTIONS=--openssl-legacy-provider concurrently 'yarn build-standalone --watch' 'yarn start-storybook -s ./ -p 9009'",
     "build-commonjs": "tsc --outDir commonjs --module CommonJS --inlineSourceMap",
     "build-esm": "tsc --module es2015 --outDir esm --inlineSourceMap",
     "build-standalone": "webpack",
-    "build": "concurrently --names 'commonjs,esm,standalone' 'yarn run build-commonjs' 'yarn run build-esm' 'yarn run build-standalone'",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider concurrently --names 'commonjs,esm,standalone' 'yarn run build-commonjs' 'yarn run build-esm' 'yarn run build-standalone'",
     "clean": "rm -rf commonjs esm standalone storybook-static types",
     "deploy-storybook": "storybook-to-ghpages",
     "standalone-hash": "shasum -b -a 256 standalone/consent-manager.js | xxd -r -p | base64",
-    "build-storybook": "yarn build-standalone && build-storybook && cp -r ./standalone ./storybook-static/standalone",
+    "build-storybook": "NODE_OPTIONS=--openssl-legacy-provider yarn build-standalone && NODE_OPTIONS=--openssl-legacy-provider build-storybook && cp -r ./standalone ./storybook-static/standalone",
     "lint": "eslint 'src/**/*.{ts,tsx}'"
   },
   "dependencies": {
