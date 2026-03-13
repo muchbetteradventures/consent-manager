@@ -25,9 +25,9 @@ export const PrimaryButton = styled('button')`
   background-color: #a0cc3d;
   color: #2a2d2c;
   padding: 14px 16px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
-  line-height: 18px;
+  line-height: 16px;
   letter-spacing: -0.36px;
   &:hover {
     opacity: 0.9;
@@ -40,16 +40,16 @@ export const PrimaryButton = styled('button')`
 
 // Secondary button - outlined style with lime border
 // Used for Reject All action
-// Figma: bg #f4f4f4, border #a0cc3d, text #2a2d2c, padding 14px 16px, font 500/18px
+// Figma: bg #f4f4f4, border #a0cc3d, text #2a2d2c, padding 14px 16px, font 500/16px
 export const SecondaryButton = styled('button')`
   ${baseStyles};
   background-color: #f4f4f4;
   color: #2a2d2c;
   border: 1px solid #a0cc3d;
   padding: 14px 16px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
-  line-height: 18px;
+  line-height: 16px;
   letter-spacing: -0.36px;
   &:hover {
     background-color: #e8e8e8;
