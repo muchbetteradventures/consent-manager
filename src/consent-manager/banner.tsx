@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import styled from 'react-emotion'
-import { DefaultButton, TextButton } from './buttons'
+import { PrimaryButton, SecondaryButton, TertiaryButton } from './buttons'
 import { CloseBehavior, CloseBehaviorFunction } from './container'
 import fontStyles from './font-styles'
 
@@ -125,36 +125,36 @@ export default class Banner extends PureComponent<Props> {
             <P>{content}</P>
           </Content>
           <Actions>
-            <TextButton
+            <TertiaryButton
               className="preferences"
               type="button"
               title="Preferences"
-              aria-label="Close"
+              aria-label="Manage cookie preferences"
               tabIndex={0}
               onClick={onChangePreferences}
             >
               Manage
-            </TextButton>
+            </TertiaryButton>
             {showRejectAll && (
-              <DefaultButton
+              <SecondaryButton
                 type="button"
                 title="Reject"
-                aria-label="Close"
+                aria-label="Reject all cookies"
                 tabIndex={0}
                 onClick={() => onClose(CloseBehavior.DENY)}
               >
                 Reject All
-              </DefaultButton>
+              </SecondaryButton>
             )}
-            <DefaultButton
+            <PrimaryButton
               type="button"
               title="Accept"
-              aria-label="Close"
+              aria-label="Accept all cookies"
               tabIndex={0}
               onClick={() => onClose(CloseBehavior.ACCEPT)}
             >
               Accept All
-            </DefaultButton>
+            </PrimaryButton>
           </Actions>
         </Root>
       </Overlay>
