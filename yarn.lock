@@ -1989,10 +1989,12 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.21.tgz#aa44a6363291c7037111c47e4661ad210aded23f"
   integrity sha512-8sRGhbpU+ck1n0PGAUgVrWrWdjSW2aqNeyC15W88GRsMpSwzv6RJGlLhE7s2RhVSOdyDmxbqlWSeThq4/7xqlA==
 
-"@types/node@^12.7.11":
-  version "12.7.11"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.11.tgz#be879b52031cfb5d295b047f5462d8ef1a716446"
-  integrity sha512-Otxmr2rrZLKRYIybtdG/sgeO+tHY20GxeDjcGmUnmmlCWyEnv2a2x1ZXBo3BTec4OiTXMQCiazB8NMBf0iRlFw==
+"@types/node@^20.0.0":
+  version "20.19.37"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.19.37.tgz#b4fb4033408dd97becce63ec932c9ec57a9e2919"
+  integrity sha512-8kzdPJ3FsNsVIurqBs7oodNnCEVbni9yUEkaHbgptDACOPW04jimGagZ51E6+lXUwJjgnBw+hyko/lkFWCldqw==
+  dependencies:
+    undici-types "~6.21.0"
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -15559,10 +15561,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^3.7.0-beta:
-  version "3.7.0-beta"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.7.0-beta.tgz#4ad556e0eee14b90ecc39261001690e16e5eeba9"
-  integrity sha512-4jyCX+IQamrPJxgkABPq9xf+hUN+GWHVxoj+oey1TadCPa4snQl1RKwUba+1dyzYCamwlCxKvZQ3TjyWLhMGBA==
+typescript@^5.0.0:
+  version "5.9.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.9.3.tgz#5b4f59e15310ab17a216f5d6cf53ee476ede670f"
+  integrity sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==
 
 ua-parser-js@^0.7.18, ua-parser-js@^0.7.9:
   version "0.7.20"
@@ -15618,6 +15620,11 @@ underscore@~1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.6.0.tgz#8b38b10cacdef63337b8b24e4ff86d45aea529a8"
   integrity sha1-izixDKze9jM3uLJOT/htRa6lKag=
+
+undici-types@~6.21.0:
+  version "6.21.0"
+  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-6.21.0.tgz#691d00af3909be93a7faa13be61b3a5b50ef12cb"
+  integrity sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==
 
 unfetch@^4.1.0:
   version "4.1.0"

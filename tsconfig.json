@@ -12,12 +12,12 @@
     "noImplicitThis": true,
     "noImplicitAny": false,
     "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "esModuleInterop": true,
     "declaration": true,
-    "declarationDir": "types"
+    "declarationDir": "types",
+    "skipLibCheck": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "build"]
