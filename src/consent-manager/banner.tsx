@@ -14,9 +14,6 @@ const Overlay = styled('div')`
   z-index: 1250;
   display: grid;
   place-items: center;
-  @media screen and (max-width: 600px) {
-    place-items: end;
-  }
 `
 
 const Title = styled('h4')`
@@ -40,8 +37,8 @@ const Root = styled<{ backgroundColor: string; textColor: string }, 'div'>('div'
     outline: none;
   }
   @media screen and (max-width: 600px) {
-    margin: 0;
-    border-radius: 0;
+    margin: 16px;
+    max-width: calc(100% - 32px);
   }
 `
 
