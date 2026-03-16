@@ -25,7 +25,7 @@ export default class ConsentManager extends PureComponent<ConsentManagerProps, {
     bannerBackgroundColor: '#fff',
     preferencesDialogTitle: 'Website Data Collection Preferences',
     defaultDestinationBehavior: 'disable',
-    showRejectAll: false
+    showRejectAll: true
   }
 
   render() {
@@ -39,6 +39,8 @@ export default class ConsentManager extends PureComponent<ConsentManagerProps, {
       bannerSubContent,
       bannerTextColor,
       bannerBackgroundColor,
+      privacyPolicyLinkHref,
+      privacyPolicyLinkText,
       preferencesDialogTitle,
       preferencesDialogContent,
       customCategories,
@@ -94,6 +96,8 @@ export default class ConsentManager extends PureComponent<ConsentManagerProps, {
                 bannerBackgroundColor || ConsentManager.defaultProps.bannerBackgroundColor
               }
               showRejectAll={showRejectAll}
+              privacyPolicyLinkHref={privacyPolicyLinkHref}
+              privacyPolicyLinkText={privacyPolicyLinkText}
               preferencesDialogTitle={preferencesDialogTitle}
               preferencesDialogContent={preferencesDialogContent}
               havePreferencesChanged={havePreferencesChanged}

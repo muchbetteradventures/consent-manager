@@ -2,19 +2,16 @@ import React from 'react'
 
 export const bannerContent = (
   <span>
-    We use cookies (and other similar technologies) to collect data to improve your experience on
-    our site. By using our website, you’re agreeing to the collection of data as described in our{' '}
-    <a
-      href="https://segment.com/docs/legal/website-data-collection-policy/"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Website Data Collection Policy
-    </a>
-    .
+    Cookies aren't just a great trail snack. We use them to keep our site working, to understand how
+    people use it (analytics), to personalise the trips we show you (personalisation), and to serve
+    relevant ads through partners like Google, Meta and Microsoft (marketing). You're in control —
+    accept all, reject all, or choose the categories you're happy with.
   </span>
 )
 export const bannerSubContent = 'You can manage your preferences here!'
+export const privacyPolicyLinkHref =
+  'https://segment.com/docs/legal/website-data-collection-policy/'
+export const privacyPolicyLinkText = 'Privacy policy'
 export const preferencesDialogTitle = 'Website Data Collection Preferences'
 export const preferencesDialogContent = (
   <div>
@@ -30,7 +27,7 @@ export const preferencesDialogContent = (
         target="_blank"
         rel="noopener noreferrer"
       >
-        Website Data Collection Policy
+        Privacy policy
       </a>
       .
     </p>

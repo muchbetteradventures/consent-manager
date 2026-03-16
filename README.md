@@ -162,7 +162,7 @@ All the options are supported. The callback function also receives these exports
       React.createElement(
         'a',
         { href: '/docs/legal/website-data-collection-policy/', target: '_blank' },
-        'Website Data Collection Policy'
+        'Privacy policy'
       ),
       '.'
     )
@@ -340,7 +340,7 @@ export default function() {
       We use cookies (and other similar technologies) to collect data to improve your experience on
       our site. By using our website, you’re agreeing to the collection of data as described in our{' '}
       <a href="/docs/legal/website-data-collection-policy/" target="_blank">
-        Website Data Collection Policy
+        Privacy policy
       </a>
       .
     </span>

@@ -75,6 +75,16 @@ const Actions = styled('div')`
   }
 `
 
+const PrivacyPolicyLink = styled('a')`
+  display: block;
+  margin-top: 10px;
+  font-size: 12px;
+  text-align: left;
+  color: inherit;
+  opacity: 0.8;
+  text-decoration: underline;
+`
+
 interface Props {
   innerRef: (node: HTMLElement | null) => void
   onClose: (forceCloseBehaviour?: CloseBehavior | CloseBehaviorFunction) => void
@@ -84,6 +94,8 @@ interface Props {
   backgroundColor: string
   textColor: string
   showRejectAll: boolean
+  privacyPolicyLinkHref: string
+  privacyPolicyLinkText?: string
 }
 
 export default class Banner extends PureComponent<Props> {
@@ -104,7 +116,9 @@ export default class Banner extends PureComponent<Props> {
       content,
       backgroundColor,
       textColor,
-      showRejectAll
+      showRejectAll,
+      privacyPolicyLinkHref,
+      privacyPolicyLinkText
     } = this.props
 
     return (
@@ -153,6 +167,9 @@ export default class Banner extends PureComponent<Props> {
               Accept All
             </PrimaryButton>
           </Actions>
+          <PrivacyPolicyLink href={privacyPolicyLinkHref} target="_blank" rel="noopener noreferrer">
+            {privacyPolicyLinkText ?? 'Privacy policy'}
+          </PrivacyPolicyLink>
         </Root>
       </Overlay>
     )

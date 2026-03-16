@@ -43,6 +43,8 @@ interface ContainerProps {
   bannerSubContent: React.ReactNode
   bannerTextColor: string
   bannerBackgroundColor: string
+  privacyPolicyLinkHref: string
+  privacyPolicyLinkText?: string
   preferencesDialogTitle: React.ReactNode
   preferencesDialogContent: React.ReactNode
   workspaceAddedNewDestinations?: boolean
@@ -199,6 +201,8 @@ const Container: React.FC<ContainerProps> = props => {
           textColor={props.bannerTextColor}
           backgroundColor={props.bannerBackgroundColor}
           showRejectAll={props.showRejectAll}
+          privacyPolicyLinkHref={props.privacyPolicyLinkHref}
+          privacyPolicyLinkText={props.privacyPolicyLinkText}
         />
       )}
 

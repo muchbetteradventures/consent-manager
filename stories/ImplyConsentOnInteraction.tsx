@@ -6,7 +6,9 @@ import {
   bannerContent,
   bannerSubContent,
   preferencesDialogContent,
-  preferencesDialogTitle
+  preferencesDialogTitle,
+  privacyPolicyLinkHref,
+  privacyPolicyLinkText
 } from './components/common-react'
 
 export const ImplyConsentOnInteraction = () => {
@@ -19,6 +21,8 @@ export const ImplyConsentOnInteraction = () => {
         bannerSubContent={bannerSubContent}
         preferencesDialogTitle={preferencesDialogTitle}
         preferencesDialogContent={preferencesDialogContent}
+        privacyPolicyLinkHref={privacyPolicyLinkHref}
+        privacyPolicyLinkText={privacyPolicyLinkText}
         implyConsentOnInteraction
       />
 
