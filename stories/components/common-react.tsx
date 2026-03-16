@@ -4,14 +4,15 @@ export const bannerContent = (
   <span>
     Cookies aren't just a great trail snack. We use them to keep our site working, to understand how
     people use it (analytics), to personalise the trips we show you (personalisation), and to serve
-    relevant ads through partners like Google, Meta and Microsoft (marketing). You're in control —
-    accept all, reject all, or choose the categories you're happy with.
+    relevant ads through partners like Google, Meta and Microsoft (marketing).
   </span>
 )
 export const bannerSubContent = 'You can manage your preferences here!'
 export const privacyPolicyLinkHref =
   'https://segment.com/docs/legal/website-data-collection-policy/'
 export const privacyPolicyLinkText = 'Privacy policy'
+export const cookiePolicyLinkHref = 'https://help.muchbetteradventures.com/cookies'
+export const cookiePolicyLinkText = 'Cookie policy'
 export const preferencesDialogTitle = 'Website Data Collection Preferences'
 export const preferencesDialogContent = (
   <div>

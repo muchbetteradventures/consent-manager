@@ -14,7 +14,9 @@ import {
   preferencesDialogTitle,
   preferencesDialogContent,
   privacyPolicyLinkHref,
-  privacyPolicyLinkText
+  privacyPolicyLinkText,
+  cookiePolicyLinkHref,
+  cookiePolicyLinkText
 } from './components/common-react'
 
 const ConsentManagerExample = (props: { closeBehavior: CloseBehavior | CloseBehaviorFunction }) => {
@@ -39,6 +41,8 @@ const ConsentManagerExample = (props: { closeBehavior: CloseBehavior | CloseBeha
         bannerSubContent={bannerSubContent}
         privacyPolicyLinkHref={privacyPolicyLinkHref}
         privacyPolicyLinkText={privacyPolicyLinkText}
+        cookiePolicyLinkHref={cookiePolicyLinkHref}
+        cookiePolicyLinkText={cookiePolicyLinkText}
         preferencesDialogTitle={preferencesDialogTitle}
         preferencesDialogContent={preferencesDialogContent}
         closeBehavior={props.closeBehavior}

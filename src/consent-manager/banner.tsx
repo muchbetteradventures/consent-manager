@@ -75,7 +75,14 @@ const Actions = styled('div')`
   }
 `
 
-const PrivacyPolicyLink = styled('a')`
+const PolicyLinkContainer = styled('div')`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+`
+
+const PolicyLink = styled('a')`
   display: block;
   margin-top: 10px;
   font-size: 12px;
@@ -96,6 +103,8 @@ interface Props {
   showRejectAll: boolean
   privacyPolicyLinkHref: string
   privacyPolicyLinkText?: string
+  cookiePolicyLinkHref: string
+  cookiePolicyLinkText?: string
 }
 
 export default class Banner extends PureComponent<Props> {
@@ -118,7 +127,9 @@ export default class Banner extends PureComponent<Props> {
       textColor,
       showRejectAll,
       privacyPolicyLinkHref,
-      privacyPolicyLinkText
+      privacyPolicyLinkText,
+      cookiePolicyLinkHref,
+      cookiePolicyLinkText
     } = this.props
 
     return (
@@ -167,9 +178,14 @@ export default class Banner extends PureComponent<Props> {
               Accept All
             </PrimaryButton>
           </Actions>
-          <PrivacyPolicyLink href={privacyPolicyLinkHref} target="_blank" rel="noopener noreferrer">
-            {privacyPolicyLinkText ?? 'Privacy policy'}
-          </PrivacyPolicyLink>
+          <PolicyLinkContainer>
+            <PolicyLink href={privacyPolicyLinkHref} target="_blank" rel="noopener noreferrer">
+              {privacyPolicyLinkText ?? 'Privacy policy'}
+            </PolicyLink>
+            <PolicyLink href={cookiePolicyLinkHref} target="_blank" rel="noopener noreferrer">
+              {cookiePolicyLinkText ?? 'Cookie policy'}
+            </PolicyLink>
+          </PolicyLinkContainer>
         </Root>
       </Overlay>
     )

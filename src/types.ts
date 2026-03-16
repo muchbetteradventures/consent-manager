@@ -87,6 +87,8 @@ export interface ConsentManagerProps {
   bannerBackgroundColor?: string
   privacyPolicyLinkHref: string
   privacyPolicyLinkText?: string
+  cookiePolicyLinkHref: string
+  cookiePolicyLinkText?: string
   preferencesDialogTitle?: React.ReactNode
   preferencesDialogContent: React.ReactNode
   onError?: (error: Error | undefined) => void
