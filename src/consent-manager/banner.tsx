@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import styled from 'react-emotion'
-import { DefaultButton, TextButton } from './buttons'
+import { PrimaryButton, SecondaryButton, TertiaryButton } from './buttons'
 import { CloseBehavior, CloseBehaviorFunction } from './container'
 import fontStyles from './font-styles'
 
@@ -14,9 +14,6 @@ const Overlay = styled('div')`
   z-index: 1250;
   display: grid;
   place-items: center;
-  @media screen and (max-width: 600px) {
-    place-items: end;
-  }
 `
 
 const Title = styled('h4')`
@@ -40,8 +37,8 @@ const Root = styled<{ backgroundColor: string; textColor: string }, 'div'>('div'
     outline: none;
   }
   @media screen and (max-width: 600px) {
-    margin: 0;
-    border-radius: 0;
+    margin: 16px;
+    max-width: calc(100% - 32px);
   }
 `
 
@@ -78,6 +75,23 @@ const Actions = styled('div')`
   }
 `
 
+const PolicyLinkContainer = styled('div')`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+`
+
+const PolicyLink = styled('a')`
+  display: block;
+  margin-top: 10px;
+  font-size: 12px;
+  text-align: left;
+  color: inherit;
+  opacity: 0.8;
+  text-decoration: underline;
+`
+
 interface Props {
   innerRef: (node: HTMLElement | null) => void
   onClose: (forceCloseBehaviour?: CloseBehavior | CloseBehaviorFunction) => void
@@ -87,6 +101,10 @@ interface Props {
   backgroundColor: string
   textColor: string
   showRejectAll: boolean
+  privacyPolicyLinkHref: string
+  privacyPolicyLinkText?: string
+  cookiePolicyLinkHref: string
+  cookiePolicyLinkText?: string
 }
 
 export default class Banner extends PureComponent<Props> {
@@ -107,7 +125,11 @@ export default class Banner extends PureComponent<Props> {
       content,
       backgroundColor,
       textColor,
-      showRejectAll
+      showRejectAll,
+      privacyPolicyLinkHref,
+      privacyPolicyLinkText,
+      cookiePolicyLinkHref,
+      cookiePolicyLinkText
     } = this.props
 
     return (
@@ -125,37 +147,45 @@ export default class Banner extends PureComponent<Props> {
             <P>{content}</P>
           </Content>
           <Actions>
-            <TextButton
+            <TertiaryButton
               className="preferences"
               type="button"
               title="Preferences"
-              aria-label="Close"
+              aria-label="Manage cookie preferences"
               tabIndex={0}
               onClick={onChangePreferences}
             >
               Manage
-            </TextButton>
+            </TertiaryButton>
             {showRejectAll && (
-              <DefaultButton
+              <SecondaryButton
                 type="button"
                 title="Reject"
-                aria-label="Close"
+                aria-label="Reject all cookies"
                 tabIndex={0}
                 onClick={() => onClose(CloseBehavior.DENY)}
               >
                 Reject All
-              </DefaultButton>
+              </SecondaryButton>
             )}
-            <DefaultButton
+            <PrimaryButton
               type="button"
               title="Accept"
-              aria-label="Close"
+              aria-label="Accept all cookies"
               tabIndex={0}
               onClick={() => onClose(CloseBehavior.ACCEPT)}
             >
               Accept All
-            </DefaultButton>
+            </PrimaryButton>
           </Actions>
+          <PolicyLinkContainer>
+            <PolicyLink href={privacyPolicyLinkHref} target="_blank" rel="noopener noreferrer">
+              {privacyPolicyLinkText ?? 'Privacy policy'}
+            </PolicyLink>
+            <PolicyLink href={cookiePolicyLinkHref} target="_blank" rel="noopener noreferrer">
+              {cookiePolicyLinkText ?? 'Cookie policy'}
+            </PolicyLink>
+          </PolicyLinkContainer>
         </Root>
       </Overlay>
     )

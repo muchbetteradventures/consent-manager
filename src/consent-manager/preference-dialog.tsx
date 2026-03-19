@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import styled, { css } from 'react-emotion'
 import Dialog from './dialog'
-import { DefaultButton, GreenButton } from './buttons'
+import { PrimaryButton, SecondaryButton } from './buttons'
 import { Destination, CustomCategories, CategoryPreferences } from '../types'
 import { CloseBehavior, CloseBehaviorFunction } from './container'
 
@@ -111,25 +111,25 @@ export default class PreferenceDialog extends PureComponent<PreferenceDialogProp
     } = this.props
     const buttons = (
       <div>
-        <DefaultButton
+        <SecondaryButton
           type="button"
           title="Reject"
-          aria-label="Close"
+          aria-label="Reject all cookies"
           tabIndex={0}
           onClick={() => onClose(CloseBehavior.DENY)}
         >
           Reject All
-        </DefaultButton>
-        <DefaultButton
+        </SecondaryButton>
+        <PrimaryButton
           type="button"
           title="Accept"
-          aria-label="Close"
+          aria-label="Accept all cookies"
           tabIndex={0}
           onClick={() => onClose(CloseBehavior.ACCEPT)}
         >
           Accept All
-        </DefaultButton>
-        <GreenButton type="submit">Save</GreenButton>
+        </PrimaryButton>
+        <PrimaryButton type="submit">Save</PrimaryButton>
       </div>
     )
     return (
