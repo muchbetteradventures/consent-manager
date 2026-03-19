@@ -39,6 +39,10 @@ export default class ConsentManager extends PureComponent<ConsentManagerProps, {
       bannerSubContent,
       bannerTextColor,
       bannerBackgroundColor,
+      privacyPolicyLinkHref,
+      privacyPolicyLinkText,
+      cookiePolicyLinkHref,
+      cookiePolicyLinkText,
       preferencesDialogTitle,
       preferencesDialogContent,
       customCategories,
@@ -94,6 +98,10 @@ export default class ConsentManager extends PureComponent<ConsentManagerProps, {
                 bannerBackgroundColor || ConsentManager.defaultProps.bannerBackgroundColor
               }
               showRejectAll={showRejectAll}
+              privacyPolicyLinkHref={privacyPolicyLinkHref}
+              privacyPolicyLinkText={privacyPolicyLinkText}
+              cookiePolicyLinkHref={cookiePolicyLinkHref}
+              cookiePolicyLinkText={cookiePolicyLinkText}
               preferencesDialogTitle={preferencesDialogTitle}
               preferencesDialogContent={preferencesDialogContent}
               havePreferencesChanged={havePreferencesChanged}

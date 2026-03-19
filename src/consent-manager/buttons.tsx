@@ -1,58 +1,83 @@
-import styled, { css } from 'react-emotion'
+import styled, { css, injectGlobal } from 'react-emotion'
 import fontStyles from './font-styles'
 
+// Inject Rubik font from Google Fonts
+injectGlobal`
+  @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
+`
+
 const baseStyles = css`
-  ${fontStyles}
+  ${fontStyles};
   border: none;
   border-radius: 4px;
-  font-size: 12px;
-  line-height: 1;
   cursor: pointer;
-  padding: 6px 16px;
-  font-size: 14px;
   box-sizing: border-box;
-  font-weight: 700;
-  line-height: 1.75;
-  border-radius: 4px;
-  border: 0;
   text-transform: none;
-  color: white;
-  background-color: #98be42;
-  margin-left: 4px;
+  margin-left: 8px;
+  transition: background-color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
 `
 
-export const DefaultButton = styled('button')`
+// Primary button - MBA Green variant
+// Used for Accept All and Save actions
+// Figma: bg #a0cc3d, text #2a2d2c, padding 14px 16px, font 500/18px, border-radius 4px
+export const PrimaryButton = styled('button')`
   ${baseStyles};
-  color: #428bca;
-  border: 1px solid rgba(66, 139, 202, 0.5);
-  background-color: #fff;
-  margin-left: 4px;
+  background-color: #a0cc3d;
+  color: #2a2d2c;
+  padding: 14px 16px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: -0.36px;
+  &:hover {
+    opacity: 0.9;
+  }
   &:focus {
-    text-decoration: underline;
+    outline: 2px solid #a0cc3d;
+    outline-offset: 2px;
   }
 `
 
-export const TextButton = styled('button')`
+// Secondary button - outlined style with lime border
+// Used for Reject All action
+// Figma: bg #f4f4f4, border #a0cc3d, text #2a2d2c, padding 14px 16px, font 500/16px
+export const SecondaryButton = styled('button')`
   ${baseStyles};
-  color: #428bca;
-  background-color: #fff;
-  border: none;
-  margin-left: 4px;
+  background-color: #f4f4f4;
+  color: #2a2d2c;
+  border: 1px solid #a0cc3d;
+  padding: 14px 16px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: -0.36px;
+  &:hover {
+    background-color: #e8e8e8;
+  }
   &:focus {
-    text-decoration: underline;
+    outline: 2px solid #a0cc3d;
+    outline-offset: 2px;
   }
 `
 
-export const GreenButton = styled('button')`
+// Tertiary button - text only, no border
+// Used for Manage preferences action
+// Figma: no bg, text #2a2d2c, padding 14px 16px, font 700/12px
+export const TertiaryButton = styled('button')`
   ${baseStyles};
-  background-color: #98be42;
-  color: #fff;
-  &:focus {
+  background-color: transparent;
+  color: #2a2d2c;
+  padding: 14px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: -0.24px;
+  margin-left: 0;
+  &:hover {
     text-decoration: underline;
   }
-`
-
-export const RedButton = styled('button')`
-  ${baseStyles};
-  background-color: #98be42;
+  &:focus {
+    outline: 2px solid #2a2d2c;
+    outline-offset: 2px;
+  }
 `
